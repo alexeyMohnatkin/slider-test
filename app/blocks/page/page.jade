@@ -1,0 +1,8 @@
+mixin page()
+	+b('body').page&attributes(attributes)
+		//- .wrapper
+		include ../header/header
+		main.content
+			block content
+		include ../footer/footer
+		+scripts(['app.min.js'])
