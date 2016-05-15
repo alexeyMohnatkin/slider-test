@@ -35,6 +35,7 @@ Thumbs.db
 .hg
 .idea
 .svn
+.publish
 bower_components
 
 # Node.JS
