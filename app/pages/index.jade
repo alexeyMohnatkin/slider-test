@@ -7,9 +7,23 @@ block content
 	#slider
 		.slides
 			.slide
-				img(src="http://lorempixel.com/940/350/people/1")
+				img(src="http://lorempixel.com/940/350/people/4")
 			.slide
-				img(src="http://lorempixel.com/940/400/people/2")
+				img(src="http://lorempixel.com/940/400/people/5")
 			.slide
-				img(src="http://lorempixel.com/940/300/people/3")
+				img(src="http://lorempixel.com/940/370/people/6")
+		.slider-content
+			.slider-arrows
+				.arrow.left: &laquo;
+				.arrow.right: &raquo;
+			.title Фотографиям вашего ребёнка <br>позавидуют даже звезды
+			a.button(href="#")
+				svg(class="button-text")
+					defs
+						linearGradient(id="button-grad" x1="0%" y1="0%" x2="0%" y2="100%")
+							stop(offset="0%" style="stop-color:rgb(81,25,14); stop-opacity:1")
+							stop(offset="100%" style="stop-color:rgb(123,75,20); stop-opacity:1")
 
+					text(fill="url(#button-grad)" x="0" y="28") Начать обучение &raquo;
+
+				//- span.button-text

@@ -6,7 +6,8 @@ export default class Slider {
 			slideSelector: options.slidetSelector || '.slide',
 			startSlide: options.startSlide || 0,
 			delay: options.delay || 4000,
-			speed: options.speed || 1000
+			speed: options.speed || 1000,
+			auto: options.auto || false
 		}
 
 		this.sliderRoot = document.querySelector(this.options.root);
