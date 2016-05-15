@@ -2,7 +2,6 @@
   "name": "boilerplate",
   "version": "0.0.1",
   "description": "modified csssr boilerplate",
-
   "scripts": {
     "start": "gulp --debug",
     "build": "gulp build",

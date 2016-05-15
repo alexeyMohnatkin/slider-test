@@ -25,7 +25,7 @@ export default function makeWebpackConfig({
 	sourcemaps = false,
 	debug = false,
 	notify = false,
-	eslint = true
+	eslint = false
 }) {
 	return {
 		watch,

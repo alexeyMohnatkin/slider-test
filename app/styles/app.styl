@@ -12,3 +12,18 @@ import('../blocks/**/*')
 #slider
 	width 940px
 	margin 0 auto
+	overflow hidden
+
+	.slides
+		display flex
+		flex-wrap nowrap
+
+		.slide
+			position relative
+
+			&.active
+				z-index: 10
+
+			img
+				display block
+				max-width 100%
