@@ -6,8 +6,9 @@ export default class Slider {
 			slideSelector: options.slidetSelector || '.slide',
 			startSlide: options.startSlide || 0,
 			delay: options.delay || 4000,
-			speed: options.speed || 1000,
-			auto: options.auto || false
+			speed: options.speed || 400,
+			auto: options.auto || false,
+			arrows: options.arrows || false
 		}
 
 		this.sliderRoot = document.querySelector(this.options.root);
@@ -41,21 +42,38 @@ export default class Slider {
 		this.slides[this.options.startSlide].style.visibility = 'visible';
 
 
-		// set interval
+		// start auto
 		if(this.options.auto === true) {
-			this.sliderInterval = setInterval(this.showNext.bind(this), this.options.delay);
+			this.sliderTimeout = setTimeout(this.showNext.bind(this), this.options.delay);
 		}
+
+		// init arrows
+		if(this.options.arrows !== false) {
+			this.initArrows();
+		}
+	}
+
+	initArrows() {
+		const arrows = document.querySelector(this.options.arrows);
+		arrows.querySelector('.left').addEventListener('click', this.showPrev.bind(this));
+		arrows.querySelector('.right').addEventListener('click', this.showNext.bind(this));
 	}
 
 	showSlide(num) {
 
+		clearTimeout(this.sliderTimeout);
+
+		// show next slide behind current
 		this.slides[num].style.visibility = 'visible';
+
 		this.fadeOut(this.slides[this.currentSlide], this.options.speed, () => {
 			this.addClass(this.slides[num], 'active');
 			this.removeClass(this.slides[this.currentSlide], 'active');
 			this.slides[this.currentSlide].style.opacity = 1;
 			this.slides[this.currentSlide].style.visibility = 'hidden';
 			this.currentSlide = num;
+
+			this.sliderTimeout = setTimeout(this.showNext.bind(this), this.options.delay);
 		});
 
 
@@ -64,9 +82,11 @@ export default class Slider {
 	showNext() {
 		this.showSlide(this.getNext(this.currentSlide));
 	}
+	showPrev() {
+		this.showSlide(this.getNext(this.currentSlide));
+	}
 
 	getNext(num) {
-		console.log(num);
 		return num < this.slidesLength-1 ? num + 1 : 0;
 	}
 	getPrev(num) {
@@ -96,20 +116,12 @@ export default class Slider {
 		let start = performance.now();
 
 		requestAnimationFrame(function animate(time) {
-			// определить, сколько прошло времени с начала анимации
 			let timePassed = time - start;
-
-			// возможно небольшое превышение времени, в этом случае зафиксировать конец
 			if (timePassed > duration) timePassed = duration;
-
-			// нарисовать состояние анимации в момент timePassed
 			draw(timePassed);
-
-			// если время анимации не закончилось - запланировать ещё кадр
 			if (timePassed < duration) {
 				requestAnimationFrame(animate);
 			}
-
 		});
 	}
 
