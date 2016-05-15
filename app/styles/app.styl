@@ -51,6 +51,7 @@ import('../blocks/**/*')
 			.arrow
 				width 40px
 				height 40px
+				min-width 40px
 				margin-right 20px
 				border-radius 100%
 				line-height 38px
@@ -65,7 +66,7 @@ import('../blocks/**/*')
 					background #363535;
 
 		.title
-			width 100%
+			// min-width 100%
 			font-size 22px
 			color #fff
 			flex-grow 1
@@ -73,6 +74,9 @@ import('../blocks/**/*')
 
 		.button
 			display inline-block
+			// flex-grow 0
+			// width 300px
+			position relative
 			height 45px
 			line-height 45px
 			padding 0 40px
@@ -80,9 +84,18 @@ import('../blocks/**/*')
 			border-radius 4px
 			background: linear-gradient(to bottom, #ffebcf 0%,#f2b055 50%,#ec9f35 51%,#f9ca4f 100%);
 
+			text-transform uppercase
+			font-size 16px
+			font-weight bold
+
+			.fix
+				visibility hidden
+
 			.button-text
-				width 100%
-				height 100%
+				position absolute
+				top 0
+				left 40px
+				right 40px
 
 				text
 					text-transform uppercase
